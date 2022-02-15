@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/index.css"],"names":[],"mappings":"AAAA,OACE,iBAAkB,CAClB,KACF,CACA,OACE,iBAAkB,CAClB,QACF","file":"main.ce8d3938.chunk.css","sourcesContent":["header {\n  position: relative;\n  top: 0;\n}\nfooter {\n  position: absolute;\n  bottom: 0;\n}\n"]}
