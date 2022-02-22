@@ -34,7 +34,7 @@ export const Login = () => {
             className="form-control"
             id="username"
             name="username"
-            placeholder="Ihr Name"
+            placeholder="Your Username"
             onChange={e => setUsername(e.target.value)}
           />
         </div>
@@ -46,7 +46,7 @@ export const Login = () => {
             className="form-control"
             id="user_password"
             name="user_password"
-            placeholder="Ihr Password"
+            placeholder="Your Password"
             onChange={e => setUserPassword(e.target.value)}
           />
         </div>

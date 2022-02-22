@@ -69,7 +69,9 @@ export const EditValuesForm = (values) => {
   return(
     <div className='container modal-content'>
       <div className="modal-header">
-        <h5 className="modal-title" id="newClassLabel">Edit Class Values</h5>
+        <h5 className="modal-title" id="newClassLabel">
+          { form === 'editData' ? ('Edit Class Values'): ('Delete Data')}
+        </h5>
         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
@@ -123,7 +125,7 @@ export const EditValuesForm = (values) => {
                       <tr>
                         <th
                           className="bg-warning"
-                          colspan={ form === 'addData' ? (`${topic_list.length}`): (`${topic_list.length + 1}`)}
+                          colspan={ form === 'editData' ? (`${topic_list.length}`): (`${topic_list.length + 1}`)}
                         >
                           <center>
                             { form === 'editData' ? (
