@@ -6,7 +6,6 @@ Host Frontend of the Webapp.
 from flask import Blueprint, render_template, redirect, flash, url_for
 from flask_login import current_user, logout_user, login_required
 
-
 views: Blueprint = Blueprint('views', __name__)
 
 
@@ -20,7 +19,7 @@ def auth() -> str:
 
     :return: Return the ReactJS-Frontend.
     """
-    return render_template('index.html', user=current_user)
+    return render_template('index.html', authenticated=str(current_user.is_authenticated).lower())
 
 
 @views.route('/')
@@ -30,7 +29,7 @@ def home() -> str:
 
     :return: Return the ReactJS-Frontend.
     """
-    return render_template('index.html', user=current_user)
+    return render_template('index.html', authenticated=str(current_user.is_authenticated).lower())
 
 
 @views.route('/dashboard')
@@ -40,8 +39,7 @@ def dashboard() -> str:
 
     :return: Return the reactjs-frontend.
     """
-
-    return render_template('index.html', user=current_user)
+    return render_template('index.html', authenticated=str(current_user.is_authenticated).lower())
 
 
 @views.route('/auth/logout')
