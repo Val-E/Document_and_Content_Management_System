@@ -45,9 +45,8 @@ export const EditValuesForm = (values) => {
       }
     ).then(response => response.json())
      .then(response => {
-       var class_groups = response.class_groups;
-       if (Object.keys(class_groups).indexOf('msg') >= 0) { setMessage(class_groups) }
-       else { setClassGroups(class_groups) }
+       if (Object.keys(response).indexOf('msg') >= 0) { setMessage(response) }
+       else { setClassGroups(response.class_groups) }
      })
      .catch(error => console.log(error));
   }
