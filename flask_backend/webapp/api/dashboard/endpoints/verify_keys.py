@@ -93,7 +93,7 @@ class VerifyKeysEndpoint(Resource):
                 user: User = User.query.filter_by(username=username, group=group.id).first()
                 if user:
                     if check_password_hash(user.password, user_password):
-                        verify_keys(current_user.id, user_password)
+                        verify_keys(user.id, user_password)
                         return jsonify({'msg': 'Verification routine finished!', 'category': "success"})
                     else:
                         return jsonify({'msg': 'Wrong User Password!', 'category': 'danger'})
@@ -134,7 +134,7 @@ class GetAssignedDataEndpoint(Resource):
             user: User = User.query.filter_by(username=username, group=group.id).first()
             if user:
                 if check_password_hash(user.password, user_password):
-                    class_names, user_names = get_assigned_data(current_user.id)
+                    class_names, user_names = get_assigned_data(user.id)
                     return jsonify({'classes': class_names, 'users': user_names})
                 else:
                     return jsonify({'msg': 'Wrong User Password!', 'category': 'danger'})
