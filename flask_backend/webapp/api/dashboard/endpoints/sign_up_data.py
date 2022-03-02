@@ -100,7 +100,7 @@ class ClassListEndpoints(Resource):
             user: User = User.query.filter(User.username == username).filter(User.group == group.id).first()
             if user:
                 if check_password_hash(user.password, user_password):
-                    class_names: list = get_class_list(current_user.id)
+                    class_names: list = get_class_list(user.id)
                     return jsonify({'class_list': class_names})
                 else:
                     return jsonify({'msg': 'Wrong User Password', 'category': 'danger'})
@@ -169,7 +169,7 @@ class SignUpClassEndpoint(Resource):
                             .join(Class) \
                             .join(Group) \
                             .filter(Class.class_name == class_name) \
-                            .filter(Group.id == current_user.id) \
+                            .filter(Group.id == user.id) \
                             .first()
                         if _class:
                             return jsonify({
