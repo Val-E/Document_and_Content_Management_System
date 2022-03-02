@@ -1,1 +1,1 @@
-# Coming soon.
+Administrate your entries online.
