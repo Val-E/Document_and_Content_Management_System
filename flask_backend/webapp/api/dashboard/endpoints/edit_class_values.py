@@ -57,7 +57,7 @@ class GetDatasetsEndpoint(Resource):
                 user: User = User.query.filter_by(User.username == username).filter(Group.group == group.id).first()
                 if user:
                     if check_password_hash(user.password, user_password):
-                        datasets: dict = get_datasets(current_user.id, user_password)
+                        datasets: dict = get_datasets(user.id, user_password)
                         return jsonify({'class_groups': datasets})
                     else:
                         return jsonify({'msg': 'Wrong User Password', 'category': 'danger'})
@@ -152,11 +152,11 @@ class DeleteData(Resource):
                 if user:
                     if check_password_hash(user.password, user_password):
                         if data_id:
-                            delete_data(data_id, current_user.id)
+                            delete_data(data_id, user.id)
                         if dataset_id:
-                            delete_dataset(dataset_id, current_user.id)
+                            delete_dataset(dataset_id, user.id)
                         if class_id:
-                            delete_class(class_id, current_user.id)
+                            delete_class(class_id, user.id)
 
                         return jsonify({'msg': 'Removing Routine finished.', 'category': 'success'})
                     else:
