@@ -237,7 +237,7 @@ class SignUpDatasetsEndpoint(Resource):
                         'category': 'danger'
                     })
                 else:
-                    status_message: dict = add_datasets(datasets, _class)
+                    status_message: dict = add_datasets(datasets, _class, current_user)
                     return jsonify(status_message)
             else:
                 return jsonify({'msg': 'You do not own a class with such a name!', 'category': 'danger'})
@@ -262,7 +262,7 @@ class SignUpDatasetsEndpoint(Resource):
                                     'category': 'danger'
                                 })
                             else:
-                                status_message: dict = add_datasets(datasets, _class)
+                                status_message: dict = add_datasets(datasets, _class, user)
                                 return jsonify(status_message)
                         else:
                             return jsonify({'msg': 'There is no class with this name!', 'category': 'danger'})
