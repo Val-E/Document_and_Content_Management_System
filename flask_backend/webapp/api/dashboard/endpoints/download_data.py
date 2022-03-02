@@ -1,4 +1,4 @@
-"""Implementation of the API-Endpoints required to  datasets and its entries values. """
+"""Implementation of the API-Endpoints required to download datasets and its entries values. """
 
 from flask import request, jsonify, wrappers, send_file
 from flask_login import current_user
