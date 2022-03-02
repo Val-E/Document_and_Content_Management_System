@@ -173,7 +173,7 @@ def add_datasets(datasets: list, _class, current_user: User) -> dict:
         for topic, users in users_list.items():
             if users:
                 # Create entry for data, when users are assigned via specific configuration
-                add_data(new_dataset.id, topic_cache[topic], users[topic])
+                add_data(new_dataset.id, topic_cache[topic], users)
 
             elif topic in users_lists[-1].keys():
                 # Create entry for data, when users are assigned via global configuration
