@@ -156,7 +156,7 @@ class SignUpClassEndpoint(Resource):
                 return jsonify({'msg': 'The maximum number of topics is one hundred per class.', 'category': 'danger'})
             else:
                 # call function to add datasets and generate output
-                status_message: dict = add_datasets(datasets, class_name)
+                status_message: dict = add_datasets(datasets, class_name, current_user)
                 return jsonify(status_message)
         else:
             # validate user input for requests without session cookies
@@ -191,7 +191,7 @@ class SignUpClassEndpoint(Resource):
                                 {'msg': 'The maximum number of topics is one hundred per class.', 'category': 'danger'})
                         else:
                             # call function to add datasets and generate output
-                            status_message: dict = add_datasets(datasets, _class)
+                            status_message: dict = add_datasets(datasets, _class, user)
                             return jsonify(status_message)
                     else:
                         return jsonify({'msg': 'Wrong User Password', 'category': 'danger'})
@@ -251,7 +251,7 @@ class SignUpDatasetsEndpoint(Resource):
                         # Check if class exists.
                         _class: Class = Class.query \
                             .filter(Class.class_name == class_name) \
-                            .filter(Class.owner == current_user.id) \
+                            .filter(Class.owner == user.id) \
                             .first()
                         if _class:
                             # Check if the sum of datasets is still below 500.
