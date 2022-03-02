@@ -1,4 +1,4 @@
-"""Functions required and used to add datasets, data and keys to the database. """
+"""Functions required to add datasets, data and keys to the database. """
 
 from flask_login import current_user
 
