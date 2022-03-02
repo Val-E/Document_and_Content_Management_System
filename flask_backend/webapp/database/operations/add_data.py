@@ -1,6 +1,4 @@
-"""Functions required to add datasets, data and keys to the database. """
-
-from flask_login import current_user
+"""Functions required and used to add datasets, data and keys to the database. """
 
 from Crypto import Random
 
@@ -9,10 +7,11 @@ from ..models import Topic, User, Class, Data, Key, Dataset
 from ... import db
 
 
-def cache_users(datasets: list) -> any:
+def cache_users(datasets: list, current_user: User) -> any:
     """Cache assigned users from datasets from user inputs
 
     :param datasets: Data assignments and configuration from users.
+    :param current_user: Owner of the new class.
     :return: Return either an error message or a dictionary with all users and their ids.
     """
 
@@ -64,10 +63,11 @@ def cache_users(datasets: list) -> any:
     return users_lists
 
 
-def cache_topics(datasets: list) -> any:
+def cache_topics(datasets: list, current_user: User) -> any:
     """Cache Topics from user inputs
 
     :param datasets: Data assignments and configuration from users.
+    :param current_user: Owner of the new class.
     :return: Return either an error message or a dictionary with all topics and their ids.
     """
 
@@ -121,24 +121,24 @@ def add_data(dataset_id: int, topic_id: int, user_ids: list) -> None:
     db.session.flush()
 
 
-def add_datasets(datasets: list, _class) -> dict:
+def add_datasets(datasets: list, _class, current_user: User) -> dict:
     """Checks whether all users and all listed topics exist and add based on datasets to the database.
 
-    :type datasets: list
     :param datasets: A list of all users and their assignment data
     :param _class: When a class should be added, the value will be used ass class name,
             otherwise it is a class object and based on it will be datasets added.
+    :param current_user: Owner of the new class.
     :return: status message
     """
 
     # check whether all users exist and extract user ids
-    users_lists = cache_users(datasets)
+    users_lists = cache_users(datasets, current_user)
     if not isinstance(users_lists, list):
         # return error message from cache_users, when something went wrong
         return users_lists
 
     # check whether all topics exist and extract topic id
-    topic_cache = cache_topics(datasets)
+    topic_cache = cache_topics(datasets, current_user)
     if 'msg' in topic_cache.keys():
         # return error message from cache_topic, when something went wrong
         return topic_cache
