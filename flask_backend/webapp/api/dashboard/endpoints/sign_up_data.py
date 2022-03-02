@@ -58,7 +58,7 @@ class UserTopicListEndpoints(Resource):
             user: User = User.query.filter(User.username == username).filter(User.group == group.id).first()
             if user:
                 if check_password_hash(user.password, user_password):
-                    usernames, topic_names = get_topic_user_lists(current_user.group)
+                    usernames, topic_names = get_topic_user_lists(user.group)
                     return jsonify({'user_list': usernames, 'topic_list': topic_names})
                 else:
                     return jsonify({'msg': 'Wrong User Password', 'category': 'danger'})
