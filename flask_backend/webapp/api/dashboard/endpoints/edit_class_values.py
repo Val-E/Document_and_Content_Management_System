@@ -43,7 +43,7 @@ class GetDatasetsEndpoint(Resource):
         if current_user.is_authenticated:
             if check_password_hash(current_user.password, user_password):
                 datasets: dict = get_datasets(current_user.id, user_password)
-                return jsonify({'class_groups': datasets})
+                return jsonify(datasets)
             else:
                 return jsonify({'msg': 'Wrong User Password', 'category': 'danger'})
         else:
@@ -58,7 +58,7 @@ class GetDatasetsEndpoint(Resource):
                 if user:
                     if check_password_hash(user.password, user_password):
                         datasets: dict = get_datasets(user.id, user_password)
-                        return jsonify({'class_groups': datasets})
+                        return jsonify(datasets)
                     else:
                         return jsonify({'msg': 'Wrong User Password', 'category': 'danger'})
                 else:
