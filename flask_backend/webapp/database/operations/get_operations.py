@@ -132,6 +132,6 @@ def get_datasets(user_id: int, user_password: str) -> dict:
                         ],
                     'class_id': old_class_id,
                 }
-        return class_groups
+        return {'class_groups': class_groups}
     else:
         return {'msg': 'No datasets found.', 'category': 'warning'}
