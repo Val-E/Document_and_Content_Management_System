@@ -6,7 +6,7 @@ import { MessageContext, UserPasswordContext } from '../Context';
 export const Navbar = () => {
   /* initialize all variable for changeable values */
   const {message} = useContext(MessageContext),
-        {userPassword, setUserPassword} = useContext(UserPasswordContext),
+        {setUserPassword} = useContext(UserPasswordContext),
 
         [pathname, setPath] = useState('');
 
