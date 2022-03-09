@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import { saveAs } from 'file-saver'
 
 import { MessageContext, UserPasswordContext } from '../../Context';
